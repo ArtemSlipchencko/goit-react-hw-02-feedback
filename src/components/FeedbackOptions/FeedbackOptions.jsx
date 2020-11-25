@@ -1,5 +1,5 @@
 import React from 'react';
-import './Buttons.css';
+import './FeedbackOptions.css';
 
 const Buttons = (props) => {
 

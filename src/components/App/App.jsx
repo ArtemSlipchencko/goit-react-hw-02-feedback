@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
-import Buttons from '../Buttons/Buttons';
+import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
 import Statistics from '../Statistics/Statistics';
+import Section  from '../Section/Section';
+import Notification from '../Notification/Notification';
 
 class App extends Component {
 
@@ -52,18 +54,29 @@ class App extends Component {
                     return { bad: prevState.bad + 1};
                 });
             break;
+
+            default: 
+                console.log("Nothing :)");
         }
     }
 
     render() {
 
+        const {good, neutral, bad, total, positivePercentage} = this.state;
+
         return(
             <>
                 <h1>Expresso</h1>
-                <Buttons handleFeedback={this.handleFeedback} />
-                <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.state.total} positivePercentage={this.state.positivePercentage} />
+                <FeedbackOptions handleFeedback={this.handleFeedback} />
+                <Section title="Statistics">
+                    {total !== 0 
+                        ? <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage} />
+                        : <Notification message="No feedback given"/>
+                    }
+                </Section>
+                
             </>
-        )
+        );
     };
 
 };
