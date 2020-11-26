@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Notification = (props) => { 
 
@@ -11,5 +12,9 @@ const Notification = (props) => {
     );
 
 };
+
+Notification.propTypes = {
+    message: PropTypes.string,
+};  
 
 export default Notification;
