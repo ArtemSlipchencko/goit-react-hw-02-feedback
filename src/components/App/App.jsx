@@ -16,12 +16,11 @@ class App extends Component {
     };
 
     countTotalFeedback(prevState) {
-       return { total: prevState.total + 1};
+       return { total: prevState.total + 1 };
     };
 
     countPositiveFeedbackPercentage(prevState) {
-            return {positivePercentage: Math.round(prevState.good / prevState.total * 100)
-        };
+            return { positivePercentage: Math.round(prevState.good / prevState.total * 100) };
     };
 
     handleFeedback = (e) => {
@@ -30,7 +29,7 @@ class App extends Component {
                 this.setState(prevState => {
                     const {total} = this.countTotalFeedback(prevState);
                     const {positivePercentage} = this.countPositiveFeedbackPercentage(prevState);
-                    return { good: prevState.good + 1, total: total, positivePercentage: positivePercentage };
+                    return { good: prevState.good + 1, total, positivePercentage};
                 });
             break;
           
@@ -38,7 +37,7 @@ class App extends Component {
                 this.setState(prevState => {
                     const {total} = this.countTotalFeedback(prevState);
                     const {positivePercentage} = this.countPositiveFeedbackPercentage(prevState);
-                    return { neutral: prevState.neutral + 1, total: total, positivePercentage: positivePercentage };
+                    return { neutral: prevState.neutral + 1, total, positivePercentage };
                 });
             break;
           
