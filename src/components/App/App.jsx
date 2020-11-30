@@ -12,40 +12,26 @@ class App extends Component {
         neutral: 0,
         bad: 0,
         total: 0,
-        positivePercentage: 0,
-    };
-
-    countTotalFeedback(prevState) {
-       return { total: prevState.total + 1 };
-    };
-
-    countPositiveFeedbackPercentage(prevState) {
-            return { positivePercentage: Math.round(prevState.good / prevState.total * 100) };
+        positivePercentage: 0
     };
 
     handleFeedback = (e) => {
         switch (e.target.textContent) {
             case 'Good':
                 this.setState(prevState => {
-                    const {total} = this.countTotalFeedback(prevState);
-                    const {positivePercentage} = this.countPositiveFeedbackPercentage(prevState);
-                    return { good: prevState.good + 1, total, positivePercentage};
+                    return { good: prevState.good + 1 };
                 });
             break;
           
             case 'Neutral':
                 this.setState(prevState => {
-                    const {total} = this.countTotalFeedback(prevState);
-                    const {positivePercentage} = this.countPositiveFeedbackPercentage(prevState);
-                    return { neutral: prevState.neutral + 1, total, positivePercentage };
+                    return { neutral: prevState.neutral + 1 };
                 });
             break;
           
             case 'Bad':
                 this.setState(prevState => {
-                    const {total} = this.countTotalFeedback(prevState);
-                    const {positivePercentage} = this.countPositiveFeedbackPercentage(prevState);
-                    return { bad: prevState.bad + 1, total: total, positivePercentage: positivePercentage };
+                    return { bad: prevState.bad + 1 };
                 });
             break;
 
@@ -56,7 +42,9 @@ class App extends Component {
 
     render() {
 
-        const {good, neutral, bad, total, positivePercentage} = this.state;
+        let {good, neutral, bad, total, positivePercentage} = this.state;
+        total = good + neutral + bad;
+        positivePercentage = Math.round(good / total * 100);
 
         return(
             <>
