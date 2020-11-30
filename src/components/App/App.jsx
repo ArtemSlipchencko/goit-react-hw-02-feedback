@@ -15,43 +15,38 @@ class App extends Component {
         positivePercentage: 0,
     };
 
-    countTotalFeedback() {
-        this.setState(prevState => {
-            return { total: prevState.total + 1};
-        });
+    countTotalFeedback(prevState) {
+       return { total: prevState.total + 1};
     };
 
-    countPositiveFeedbackPercentage() {
-        this.setState((prevState) => {
-            return {positivePercentage: 
-                Math.round(prevState.good / prevState.total * 100)
-            };
-        });
+    countPositiveFeedbackPercentage(prevState) {
+            return {positivePercentage: Math.round(prevState.good / prevState.total * 100)
+        };
     };
 
     handleFeedback = (e) => {
         switch (e.target.textContent) {
             case 'Good':
                 this.setState(prevState => {
-                    this.countTotalFeedback();
-                    this.countPositiveFeedbackPercentage();
-                    return { good: prevState.good + 1};
+                    const {total} = this.countTotalFeedback(prevState);
+                    const {positivePercentage} = this.countPositiveFeedbackPercentage(prevState);
+                    return { good: prevState.good + 1, total: total, positivePercentage: positivePercentage };
                 });
             break;
           
             case 'Neutral':
                 this.setState(prevState => {
-                    this.countTotalFeedback();
-                    this.countPositiveFeedbackPercentage();
-                    return { neutral: prevState.neutral + 1};
+                    const {total} = this.countTotalFeedback(prevState);
+                    const {positivePercentage} = this.countPositiveFeedbackPercentage(prevState);
+                    return { neutral: prevState.neutral + 1, total: total, positivePercentage: positivePercentage };
                 });
             break;
           
             case 'Bad':
                 this.setState(prevState => {
-                    this.countTotalFeedback();
-                    this.countPositiveFeedbackPercentage();
-                    return { bad: prevState.bad + 1};
+                    const {total} = this.countTotalFeedback(prevState);
+                    const {positivePercentage} = this.countPositiveFeedbackPercentage(prevState);
+                    return { bad: prevState.bad + 1, total: total, positivePercentage: positivePercentage };
                 });
             break;
 
@@ -66,7 +61,6 @@ class App extends Component {
 
         return(
             <>
-                <h1>Expresso</h1>
                 <FeedbackOptions handleFeedback={this.handleFeedback} />
                 <Section title="Statistics">
                     {total !== 0 
@@ -74,7 +68,6 @@ class App extends Component {
                         : <Notification message="No feedback given"/>
                     }
                 </Section>
-                
             </>
         );
     };

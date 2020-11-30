@@ -7,8 +7,6 @@ const Statistics = (props) => {
     const {good, neutral, bad, total, positivePercentage} = props;
 
     return (
-        <>
-            <h2>Statistics</h2>
             <ul>
                 <li>good: {good}</li>
                 <li>neutral: {neutral}</li>
@@ -16,7 +14,6 @@ const Statistics = (props) => {
                 <li>total: {total}</li>
                 <li>positivePercentage: {positivePercentage}</li>
             </ul>
-        </>
     );
 
 };
